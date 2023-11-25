@@ -13,13 +13,13 @@
 <g id="node1" class="node">
 <title>literal 6 (rdi)</title>
 <ellipse fill="#19a516" stroke="black" cx="217.14" cy="-522" rx="70.39" ry="18"/>
-<text text-anchor="middle" x="217.14" y="-518.3" font-family="Times,serif" font-size="14.00">literal 6 (rdi)</text>
+<text text-anchor="middle" x="217.14" y="-518.3" font-family="Times,serif" font-size="14.00" fill="white">literal 6 (rdi)</text>
 </g>
 <!-- add [literal 6, literal 7] (rsi) -->
 <g id="node2" class="node">
 <title>add [literal 6, literal 7] (rsi)</title>
 <ellipse fill="#f64b49" stroke="black" cx="217.14" cy="-450" rx="138.38" ry="18"/>
-<text text-anchor="middle" x="217.14" y="-446.3" font-family="Times,serif" font-size="14.00">add [literal 6, literal 7] (rsi)</text>
+<text text-anchor="middle" x="217.14" y="-446.3" font-family="Times,serif" font-size="14.00" fill="white">add [literal 6, literal 7] (rsi)</text>
 </g>
 <!-- literal 6 (rdi)&#45;&gt;add [literal 6, literal 7] (rsi) -->
 <g id="edge1" class="edge">
@@ -37,7 +37,7 @@
 <g id="node3" class="node">
 <title>literal 7 (rax)</title>
 <ellipse fill="#315bb6" stroke="black" cx="72.14" cy="-378" rx="72.29" ry="18"/>
-<text text-anchor="middle" x="72.14" y="-374.3" font-family="Times,serif" font-size="14.00">literal 7 (rax)</text>
+<text text-anchor="middle" x="72.14" y="-374.3" font-family="Times,serif" font-size="14.00" fill="white">literal 7 (rax)</text>
 </g>
 <!-- add [literal 6, literal 7] (rsi)&#45;&gt;literal 7 (rax) -->
 <g id="edge3" class="edge">
@@ -48,8 +48,8 @@
 <!-- assign a = [add [literal 6, literal 7]] (rdx) -->
 <g id="node4" class="node">
 <title>assign a = [add [literal 6, literal 7]] (rdx)</title>
-<ellipse fill="#afe838" stroke="black" cx="362.14" cy="-378" rx="200.36" ry="18"/>
-<text text-anchor="middle" x="362.14" y="-374.3" font-family="Times,serif" font-size="14.00">assign a = [add [literal 6, literal 7]] (rdx)</text>
+<ellipse fill="#8087a2" stroke="black" cx="362.14" cy="-378" rx="200.36" ry="18"/>
+<text text-anchor="middle" x="362.14" y="-374.3" font-family="Times,serif" font-size="14.00" fill="white">assign a = [add [literal 6, literal 7]] (rdx)</text>
 </g>
 <!-- add [literal 6, literal 7] (rsi)&#45;&gt;assign a = [add [literal 6, literal 7]] (rdx) -->
 <g id="edge4" class="edge">
@@ -73,7 +73,7 @@
 <g id="node5" class="node">
 <title>ref a (rsi)</title>
 <ellipse fill="#f64b49" stroke="black" cx="362.14" cy="-306" rx="53.89" ry="18"/>
-<text text-anchor="middle" x="362.14" y="-302.3" font-family="Times,serif" font-size="14.00">ref a (rsi)</text>
+<text text-anchor="middle" x="362.14" y="-302.3" font-family="Times,serif" font-size="14.00" fill="white">ref a (rsi)</text>
 </g>
 <!-- assign a = [add [literal 6, literal 7]] (rdx)&#45;&gt;ref a (rsi) -->
 <g id="edge7" class="edge">
@@ -90,8 +90,8 @@
 <!-- add [ref b, ref a] (rdx) -->
 <g id="node9" class="node">
 <title>add [ref b, ref a] (rdx)</title>
-<ellipse fill="#afe838" stroke="black" cx="362.14" cy="-234" rx="112.38" ry="18"/>
-<text text-anchor="middle" x="362.14" y="-230.3" font-family="Times,serif" font-size="14.00">add [ref b, ref a] (rdx)</text>
+<ellipse fill="#8087a2" stroke="black" cx="362.14" cy="-234" rx="112.38" ry="18"/>
+<text text-anchor="middle" x="362.14" y="-230.3" font-family="Times,serif" font-size="14.00" fill="white">add [ref b, ref a] (rdx)</text>
 </g>
 <!-- ref a (rsi)&#45;&gt;add [ref b, ref a] (rdx) -->
 <g id="edge12" class="edge">
@@ -103,13 +103,13 @@
 <g id="node6" class="node">
 <title>literal 8 (rcx)</title>
 <ellipse fill="#ea3d9e" stroke="black" cx="238.14" cy="-18" rx="71.49" ry="18"/>
-<text text-anchor="middle" x="238.14" y="-14.3" font-family="Times,serif" font-size="14.00">literal 8 (rcx)</text>
+<text text-anchor="middle" x="238.14" y="-14.3" font-family="Times,serif" font-size="14.00" fill="white">literal 8 (rcx)</text>
 </g>
 <!-- assign b = [literal 8] (rdi) -->
 <g id="node7" class="node">
 <title>assign b = [literal 8] (rdi)</title>
 <ellipse fill="#19a516" stroke="black" cx="238.14" cy="-90" rx="129.18" ry="18"/>
-<text text-anchor="middle" x="238.14" y="-86.3" font-family="Times,serif" font-size="14.00">assign b = [literal 8] (rdi)</text>
+<text text-anchor="middle" x="238.14" y="-86.3" font-family="Times,serif" font-size="14.00" fill="white">assign b = [literal 8] (rdi)</text>
 </g>
 <!-- literal 8 (rcx)&#45;&gt;assign b = [literal 8] (rdi) -->
 <g id="edge8" class="edge">
@@ -127,7 +127,7 @@
 <g id="node8" class="node">
 <title>ref b (rax)</title>
 <ellipse fill="#315bb6" stroke="black" cx="238.14" cy="-162" rx="57.69" ry="18"/>
-<text text-anchor="middle" x="238.14" y="-158.3" font-family="Times,serif" font-size="14.00">ref b (rax)</text>
+<text text-anchor="middle" x="238.14" y="-158.3" font-family="Times,serif" font-size="14.00" fill="white">ref b (rax)</text>
 </g>
 <!-- assign b = [literal 8] (rdi)&#45;&gt;ref b (rax) -->
 <g id="edge10" class="edge">
@@ -163,7 +163,7 @@
 <g id="node10" class="node">
 <title>assign m = [add [ref b, ref a]] (rcx)</title>
 <ellipse fill="#ea3d9e" stroke="black" cx="487.14" cy="-162" rx="172.77" ry="18"/>
-<text text-anchor="middle" x="487.14" y="-158.3" font-family="Times,serif" font-size="14.00">assign m = [add [ref b, ref a]] (rcx)</text>
+<text text-anchor="middle" x="487.14" y="-158.3" font-family="Times,serif" font-size="14.00" fill="white">assign m = [add [ref b, ref a]] (rcx)</text>
 </g>
 <!-- add [ref b, ref a] (rdx)&#45;&gt;assign m = [add [ref b, ref a]] (rcx) -->
 <g id="edge17" class="edge">
@@ -181,7 +181,7 @@
 <g id="node11" class="node">
 <title>ref m (rdi)</title>
 <ellipse fill="#19a516" stroke="black" cx="487.14" cy="-90" rx="58.49" ry="18"/>
-<text text-anchor="middle" x="487.14" y="-86.3" font-family="Times,serif" font-size="14.00">ref m (rdi)</text>
+<text text-anchor="middle" x="487.14" y="-86.3" font-family="Times,serif" font-size="14.00" fill="white">ref m (rdi)</text>
 </g>
 <!-- assign m = [add [ref b, ref a]] (rcx)&#45;&gt;ref m (rdi) -->
 <g id="edge19" class="edge">
@@ -199,7 +199,7 @@
 <g id="node12" class="node">
 <title>print [ref m] (rsi)</title>
 <ellipse fill="#f64b49" stroke="black" cx="487.14" cy="-18" rx="90.18" ry="18"/>
-<text text-anchor="middle" x="487.14" y="-14.3" font-family="Times,serif" font-size="14.00">print [ref m] (rsi)</text>
+<text text-anchor="middle" x="487.14" y="-14.3" font-family="Times,serif" font-size="14.00" fill="white">print [ref m] (rsi)</text>
 </g>
 <!-- ref m (rdi)&#45;&gt;print [ref m] (rsi) -->
 <g id="edge21" class="edge">

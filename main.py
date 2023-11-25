@@ -2,7 +2,7 @@ registers = ["rdi", "rsi", "rax", "rdx", "rcx"]
 colours = ["#19a516",
           "#f64b49",
          "#315bb6",
-         "#afe838",
+         "#8087a2",
          "#ea3d9e",
          "#04ba72"]
 class Ins:
@@ -201,7 +201,7 @@ class Graph():
     graph = "digraph G {\n"
     for item, value in self.adjacency.items():
       name = "{} ({})".format(str(item), item.register)
-      graph += "\"{}\" [style=filled,fillcolor=\"{}\"];\n".format(name, item.colour)
+      graph += "\"{}\" [style=filled,fontcolor=white,fillcolor=\"{}\"];\n".format(name, item.colour)
       for link in value:
         
         linkname = "{} ({})".format(str(link), link.register)
