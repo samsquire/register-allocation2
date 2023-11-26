@@ -15,21 +15,21 @@
 <ellipse fill="#19a516" stroke="black" cx="217.14" cy="-522" rx="70.39" ry="18"/>
 <text text-anchor="middle" x="217.14" y="-518.3" font-family="Times,serif" font-size="14.00" fill="white">literal 6 (rdi)</text>
 </g>
-<!-- add [literal 7, literal 6] (rsi) -->
+<!-- add [literal 6, literal 7] (rsi) -->
 <g id="node2" class="node">
-<title>add [literal 7, literal 6] (rsi)</title>
+<title>add [literal 6, literal 7] (rsi)</title>
 <ellipse fill="#f64b49" stroke="black" cx="217.14" cy="-450" rx="138.38" ry="18"/>
-<text text-anchor="middle" x="217.14" y="-446.3" font-family="Times,serif" font-size="14.00" fill="white">add [literal 7, literal 6] (rsi)</text>
+<text text-anchor="middle" x="217.14" y="-446.3" font-family="Times,serif" font-size="14.00" fill="white">add [literal 6, literal 7] (rsi)</text>
 </g>
-<!-- literal 6 (rdi)&#45;&gt;add [literal 7, literal 6] (rsi) -->
+<!-- literal 6 (rdi)&#45;&gt;add [literal 6, literal 7] (rsi) -->
 <g id="edge1" class="edge">
-<title>literal 6 (rdi)&#45;&gt;add [literal 7, literal 6] (rsi)</title>
+<title>literal 6 (rdi)&#45;&gt;add [literal 6, literal 7] (rsi)</title>
 <path fill="none" stroke="black" d="M211.23,-503.7C210.48,-496.41 210.23,-487.73 210.5,-479.54"/>
 <polygon fill="black" stroke="black" points="213.99,-479.82 211.15,-469.61 207,-479.36 213.99,-479.82"/>
 </g>
-<!-- add [literal 7, literal 6] (rsi)&#45;&gt;literal 6 (rdi) -->
+<!-- add [literal 6, literal 7] (rsi)&#45;&gt;literal 6 (rdi) -->
 <g id="edge2" class="edge">
-<title>add [literal 7, literal 6] (rsi)&#45;&gt;literal 6 (rdi)</title>
+<title>add [literal 6, literal 7] (rsi)&#45;&gt;literal 6 (rdi)</title>
 <path fill="none" stroke="black" d="M223.04,-468.1C223.8,-475.37 224.05,-484.04 223.8,-492.24"/>
 <polygon fill="black" stroke="black" points="220.31,-491.98 223.16,-502.19 227.29,-492.43 220.31,-491.98"/>
 </g>
@@ -39,33 +39,33 @@
 <ellipse fill="#315bb6" stroke="black" cx="72.14" cy="-378" rx="72.29" ry="18"/>
 <text text-anchor="middle" x="72.14" y="-374.3" font-family="Times,serif" font-size="14.00" fill="white">literal 7 (rax)</text>
 </g>
-<!-- add [literal 7, literal 6] (rsi)&#45;&gt;literal 7 (rax) -->
+<!-- add [literal 6, literal 7] (rsi)&#45;&gt;literal 7 (rax) -->
 <g id="edge3" class="edge">
-<title>add [literal 7, literal 6] (rsi)&#45;&gt;literal 7 (rax)</title>
+<title>add [literal 6, literal 7] (rsi)&#45;&gt;literal 7 (rax)</title>
 <path fill="none" stroke="black" d="M176.94,-432.41C155.82,-422.73 130.18,-410.41 109.5,-400.05"/>
 <polygon fill="black" stroke="black" points="111.34,-397.06 100.84,-395.67 108.18,-403.31 111.34,-397.06"/>
 </g>
-<!-- assign a = [add [literal 7, literal 6]] (rdx) -->
+<!-- assign a = [add [literal 6, literal 7]] (rdx) -->
 <g id="node4" class="node">
-<title>assign a = [add [literal 7, literal 6]] (rdx)</title>
+<title>assign a = [add [literal 6, literal 7]] (rdx)</title>
 <ellipse fill="#8087a2" stroke="black" cx="362.14" cy="-378" rx="200.36" ry="18"/>
-<text text-anchor="middle" x="362.14" y="-374.3" font-family="Times,serif" font-size="14.00" fill="white">assign a = [add [literal 7, literal 6]] (rdx)</text>
+<text text-anchor="middle" x="362.14" y="-374.3" font-family="Times,serif" font-size="14.00" fill="white">assign a = [add [literal 6, literal 7]] (rdx)</text>
 </g>
-<!-- add [literal 7, literal 6] (rsi)&#45;&gt;assign a = [add [literal 7, literal 6]] (rdx) -->
+<!-- add [literal 6, literal 7] (rsi)&#45;&gt;assign a = [add [literal 6, literal 7]] (rdx) -->
 <g id="edge4" class="edge">
-<title>add [literal 7, literal 6] (rsi)&#45;&gt;assign a = [add [literal 7, literal 6]] (rdx)</title>
+<title>add [literal 6, literal 7] (rsi)&#45;&gt;assign a = [add [literal 6, literal 7]] (rdx)</title>
 <path fill="none" stroke="black" d="M246.37,-432.05C264.82,-422.67 289.07,-410.89 310.64,-400.82"/>
 <polygon fill="black" stroke="black" points="312,-404.05 319.6,-396.67 309.06,-397.7 312,-404.05"/>
 </g>
-<!-- literal 7 (rax)&#45;&gt;add [literal 7, literal 6] (rsi) -->
+<!-- literal 7 (rax)&#45;&gt;add [literal 6, literal 7] (rsi) -->
 <g id="edge5" class="edge">
-<title>literal 7 (rax)&#45;&gt;add [literal 7, literal 6] (rsi)</title>
+<title>literal 7 (rax)&#45;&gt;add [literal 6, literal 7] (rsi)</title>
 <path fill="none" stroke="black" d="M108.62,-393.89C129.73,-403.5 156.21,-416.17 177.77,-426.94"/>
 <polygon fill="black" stroke="black" points="176.06,-430 186.57,-431.37 179.21,-423.75 176.06,-430"/>
 </g>
-<!-- assign a = [add [literal 7, literal 6]] (rdx)&#45;&gt;add [literal 7, literal 6] (rsi) -->
+<!-- assign a = [add [literal 6, literal 7]] (rdx)&#45;&gt;add [literal 6, literal 7] (rsi) -->
 <g id="edge6" class="edge">
-<title>assign a = [add [literal 7, literal 6]] (rdx)&#45;&gt;add [literal 7, literal 6] (rsi)</title>
+<title>assign a = [add [literal 6, literal 7]] (rdx)&#45;&gt;add [literal 6, literal 7] (rsi)</title>
 <path fill="none" stroke="black" d="M332.42,-396.2C313.76,-405.69 289.31,-417.55 267.69,-427.63"/>
 <polygon fill="black" stroke="black" points="266.33,-424.4 258.72,-431.78 269.27,-430.75 266.33,-424.4"/>
 </g>
@@ -75,15 +75,15 @@
 <ellipse fill="#315bb6" stroke="black" cx="362.14" cy="-306" rx="57.39" ry="18"/>
 <text text-anchor="middle" x="362.14" y="-302.3" font-family="Times,serif" font-size="14.00" fill="white">ref a (rax)</text>
 </g>
-<!-- assign a = [add [literal 7, literal 6]] (rdx)&#45;&gt;ref a (rax) -->
+<!-- assign a = [add [literal 6, literal 7]] (rdx)&#45;&gt;ref a (rax) -->
 <g id="edge7" class="edge">
-<title>assign a = [add [literal 7, literal 6]] (rdx)&#45;&gt;ref a (rax)</title>
+<title>assign a = [add [literal 6, literal 7]] (rdx)&#45;&gt;ref a (rax)</title>
 <path fill="none" stroke="black" d="M356.23,-359.7C355.48,-352.41 355.23,-343.73 355.5,-335.54"/>
 <polygon fill="black" stroke="black" points="358.99,-335.82 356.15,-325.61 352,-335.36 358.99,-335.82"/>
 </g>
-<!-- ref a (rax)&#45;&gt;assign a = [add [literal 7, literal 6]] (rdx) -->
+<!-- ref a (rax)&#45;&gt;assign a = [add [literal 6, literal 7]] (rdx) -->
 <g id="edge11" class="edge">
-<title>ref a (rax)&#45;&gt;assign a = [add [literal 7, literal 6]] (rdx)</title>
+<title>ref a (rax)&#45;&gt;assign a = [add [literal 6, literal 7]] (rdx)</title>
 <path fill="none" stroke="black" d="M368.04,-324.1C368.8,-331.37 369.05,-340.04 368.8,-348.24"/>
 <polygon fill="black" stroke="black" points="365.31,-347.98 368.16,-358.19 372.29,-348.43 365.31,-347.98"/>
 </g>

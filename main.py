@@ -27,8 +27,8 @@ class Ins:
 
     for child in self.children:
       yield from child.anf(depth=depth + 1)
-    yield (self.var_name, self), "{} {} <- {}".format(" " * depth,
-                                                      self.var_name, self)
+    yield (self.var_name, self), "{} {} <- {} {}".format(" " * depth,
+                                                      self.var_name, self, ", ".join(map(lambda x: "{} ({})".format(x.var_name, x), self.dependencies)))
 
   def index(self, vars):
     for child in self.children:
@@ -221,8 +221,9 @@ def live_range(ins):
 
   anf = list(ins.anf())
   for item in anf:
-    print(item[0][1].dependencies)
-  pprint(anf)
+    #print(item[0][1].dependencies)
+    pass
+  # pprint(anf)
   for index, item in enumerate(anf):
     notused_start = -1
     used_start = -1
@@ -268,7 +269,7 @@ def live_range(ins):
 
     # print("{} start at {}".format(item[0], subindex))
     # print("{} not used at {}".format(item[0], notused_start, notused_end))
-    pprint(stack)
+    # pprint(stack)
     stacks.append(stack)
 
   edges = []
@@ -279,7 +280,7 @@ def live_range(ins):
     for item in stack:
       if item["type"] == "used":
         for var in item["vars"]:
-          print("{} -> {}".format(var, item["item"]))
+          pass # print("{} -> {}".format(var, item["item"]))
           interactions.add_edge(var, item["item"])
 
   interactions.backup()
@@ -290,49 +291,49 @@ def live_range(ins):
 
   assigned = []
   backupstack = list(stack)
-  pprint(stack)
+  # pprint(stack)
   available = []
   
   currentbatch = 0
 
   batches = int(len(stack) / len(registers))
-  print("batches is {}".format(batches))
+  #print("batches is {}".format(batches))
   index = 0
   for i in range(0, batches + 1):
     available.append(list(registers))
   
-  print(available)
+  # print(available)
   
   while len(stack) > 0:
-    print(available)
-    print(currentbatch)
+    # print(available)
+    # print(currentbatch)
     if len(available[currentbatch]) == 0:
       currentbatch = currentbatch + 1
     
-    print("index ", index)
+    # print("index ", index)
     item = stack.pop(0)
     index = index + 1
     if item.register:
-      print("reserving register {}".format(item.register))
-      print("basket is {}".format(int(index / len(registers))))
+      # print("reserving register {}".format(item.register))
+      # print("basket is {}".format(int(index / len(registers))))
       removalbatch = int(index / len(registers))
-      print("removal batch is {}".format(removalbatch))
+      # print("removal batch is {}".format(removalbatch))
       available[removalbatch].remove(item.register)
-      print(available)
+      # print(available)
       
   currentbatch = 0
   index = 0
   stack = backupstack
   while len(stack) > 0:
-    print(currentbatch)
+    #print(currentbatch)
     if len(available[currentbatch]) == 0:
       currentbatch = currentbatch + 1
-      print("ran out of registers in assignment")
+      # print("ran out of registers in assignment")
     item = stack.pop(0)
     index = index + 1
     if item.register == None:
       index2 = available[index % batches]
-      print("available registers", index2)
+      # print("available registers", index2)
       removalbatch = int(index / len(registers))
       register = available[removalbatch].pop(0)
       assigned.append((register, item))
@@ -343,7 +344,7 @@ def live_range(ins):
   interactions.restore()
   interactions.draw()
 
-  pprint(assigned)
+  # pprint(assigned)
 
 
 live_range(ins)
