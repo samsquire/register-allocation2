@@ -1,6 +1,7 @@
-registers = ["rdi", "rsi", "rax", "rdx", "rcx"]
+registers = ["rdi", "rsi", "rax", "rdx", "rcx", "r10"]
 colours = ["#19a516", "#f64b49", "#315bb6", "#8087a2", "#ea3d9e", "#04ba72"]
 
+import math
 
 class Ins:
 
@@ -114,7 +115,9 @@ def assign_vars(root, vars):
 
   return var_count, newroot
 
-
+add = Assign("a", [Add("add", [Literal(6), Literal(7)], None)], None)
+add.register = registers[registers.index("rax")]
+add.colour = colours[registers.index("rax")]
 assignm = Assign("m",
                  [Add("add2", [Reference("a"), Reference("b")], None)], None)
 assignm.register = registers[registers.index("rdi")]
@@ -122,7 +125,7 @@ assignm.register = registers[registers.index("rdi")]
 assignm.colour = colours[registers.index("rdi")]
 
 ins = Ins("Root", [
-    Assign("a", [Add("add", [Literal(6), Literal(7)], None)], None),
+    add,
     Assign("b", [Literal(8)], None), assignm,
     Print("print", [Reference("m")], None)
 ], None)
@@ -225,9 +228,6 @@ def live_range(ins):
     pass
   # pprint(anf)
   for index, item in enumerate(anf):
-    notused_start = -1
-    used_start = -1
-    notused = -1
     stack = []
     used = []
     unused = []
@@ -299,8 +299,8 @@ def live_range(ins):
   batches = int(len(stack) / len(registers))
   #print("batches is {}".format(batches))
   index = 0
-  for i in range(0, batches + 1):
-    available.append(list(registers))
+  
+  available = list(registers)
   
   # print(available)
   
@@ -313,38 +313,46 @@ def live_range(ins):
     # print("index ", index)
     item = stack.pop(0)
     index = index + 1
-    if item.register:
-      # print("reserving register {}".format(item.register))
-      # print("basket is {}".format(int(index / len(registers))))
-      removalbatch = int(index / len(registers))
-      # print("removal batch is {}".format(removalbatch))
-      available[removalbatch].remove(item.register)
+    
       # print(available)
       
   currentbatch = 0
   index = 0
+  previous_register = ""
   stack = backupstack
   while len(stack) > 0:
     #print(currentbatch)
-    if len(available[currentbatch]) == 0:
-      currentbatch = currentbatch + 1
+    if len(available) == 0:
+      available = list(registers)
+      print("resetting")
+      if previous_register in available:
+        available.remove(previous_register)
       # print("ran out of registers in assignment")
     item = stack.pop(0)
     index = index + 1
-    if item.register == None:
-      index2 = available[index % batches]
-      # print("available registers", index2)
-      removalbatch = int(index / len(registers))
-      register = available[removalbatch].pop(0)
+    if item.register:
+      
+      print("reserving register {}".format(item.register))
+      # print("basket is {}".format(int(index / len(registers))))
+      removalbatch = math.floor(index / len(registers))
+      
+      print("{} removal batch for {} is {} {}".format(item, item.register, removalbatch, available))
+      if item.register in available:
+        available.remove(item.register)
+    elif item.register == None:
+      
+      
+      print("{} available registers {}".format(item, available))
+      register = available.pop(0)
       assigned.append((register, item))
       item.register = register
       item.colour = colours[registers.index(register)]
-    
+    previous_register = item.register
 
   interactions.restore()
   interactions.draw()
 
-  # pprint(assigned)
+  pprint(assigned)
 
 
 live_range(ins)
