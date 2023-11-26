@@ -1,10 +1,7 @@
 registers = ["rdi", "rsi", "rax", "rdx", "rcx"]
-colours = ["#19a516",
-          "#f64b49",
-         "#315bb6",
-         "#8087a2",
-         "#ea3d9e",
-         "#04ba72"]
+colours = ["#19a516", "#f64b49", "#315bb6", "#8087a2", "#ea3d9e", "#04ba72"]
+
+
 class Ins:
 
   def __init__(self, name, children, value):
@@ -14,12 +11,11 @@ class Ins:
     self.var_name = "unset"
     self.dependencies = []
     self.colour = "white"
+    self.register = None
 
   def getdependencies(self):
     return []
 
-  
-  
   def walk(self, depth=0):
     yield (self.var_name,
            self), "{} {} <- {} {}".format(" " * depth, self.var_name,
@@ -119,10 +115,15 @@ def assign_vars(root, vars):
   return var_count, newroot
 
 
+assignm = Assign("m",
+                 [Add("add2", [Reference("a"), Reference("b")], None)], None)
+assignm.register = registers[registers.index("rdi")]
+
+assignm.colour = colours[registers.index("rdi")]
+
 ins = Ins("Root", [
     Assign("a", [Add("add", [Literal(6), Literal(7)], None)], None),
-    Assign("b", [Literal(8)], None),
-    Assign("m", [Add("add2", [Reference("a"), Reference("b")], None)], None),
+    Assign("b", [Literal(8)], None), assignm,
     Print("print", [Reference("m")], None)
 ], None)
 
@@ -158,11 +159,13 @@ class Graph():
       for backward in self.backwards[node]:
         found.add(backward)
     return found
+
   def restore(self):
     self.adjacency = self.adjacency_backup
+
   def backup(self):
     self.adjacency_backup = dict(self.adjacency)
-  
+
   def remove_node(self, size):
     removals = []
     for node, links in self.adjacency.items():
@@ -174,13 +177,13 @@ class Graph():
     if removals:
       return removals[0]
     return None
-  
+
   def has_node_with_degree(self, size):
     for node, links in self.adjacency.items():
       if len(links) < size:
         return True
     return False
-  
+
   def add_edge(self, start, end):
 
     if start not in self.adjacency:
@@ -201,18 +204,16 @@ class Graph():
     graph = "digraph G {\n"
     for item, value in self.adjacency.items():
       name = "{} ({})".format(str(item), item.register)
-      graph += "\"{}\" [style=filled,fontcolor=white,fillcolor=\"{}\"];\n".format(name, item.colour)
+      graph += "\"{}\" [style=filled,fontcolor=white,fillcolor=\"{}\"];\n".format(
+          name, item.colour)
       for link in value:
-        
+
         linkname = "{} ({})".format(str(link), link.register)
-        
+
         graph += "\"{}\" -> \"{}\";\n".format(name, linkname)
     graph += "}"
-    print(graph)
+    # print(graph)
     dot.communicate(graph.encode("utf8"))
-
-
-
 
 
 def live_range(ins):
@@ -273,9 +274,7 @@ def live_range(ins):
   edges = []
   vertices = []
   interactions = Graph("root")
-  
 
-  
   for stack in stacks:
     for item in stack:
       if item["type"] == "used":
@@ -290,26 +289,61 @@ def live_range(ins):
     stack.append(node)
 
   assigned = []
+  backupstack = list(stack)
   pprint(stack)
-  available = list(registers)
+  available = []
+  
+  currentbatch = 0
+
+  batches = int(len(stack) / len(registers))
+  print("batches is {}".format(batches))
+  index = 0
+  for i in range(0, batches + 1):
+    available.append(list(registers))
+  
+  print(available)
+  
   while len(stack) > 0:
-    if len(available) == 0:
-      available = list(registers)
-    register = available.pop(0)
+    print(available)
+    print(currentbatch)
+    if len(available[currentbatch]) == 0:
+      currentbatch = currentbatch + 1
+    
+    print("index ", index)
     item = stack.pop(0)
-    assigned.append((register, item))
-    item.register = register
-    item.colour = colours[registers.index(register)]
+    index = index + 1
+    if item.register:
+      print("reserving register {}".format(item.register))
+      print("basket is {}".format(int(index / len(registers))))
+      removalbatch = int(index / len(registers))
+      print("removal batch is {}".format(removalbatch))
+      available[removalbatch].remove(item.register)
+      print(available)
+      
+  currentbatch = 0
+  index = 0
+  stack = backupstack
+  while len(stack) > 0:
+    print(currentbatch)
+    if len(available[currentbatch]) == 0:
+      currentbatch = currentbatch + 1
+      print("ran out of registers in assignment")
+    item = stack.pop(0)
+    index = index + 1
+    if item.register == None:
+      index2 = available[index % batches]
+      print("available registers", index2)
+      removalbatch = int(index / len(registers))
+      register = available[removalbatch].pop(0)
+      assigned.append((register, item))
+      item.register = register
+      item.colour = colours[registers.index(register)]
+    
 
   interactions.restore()
   interactions.draw()
-  
-  
+
   pprint(assigned)
+
+
 live_range(ins)
-
-
-
-
-def register_allocate():
-  pass
