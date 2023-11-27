@@ -75,6 +75,14 @@ class Assign(Ins):
   def __repr__(self):
     return "assign {} = {}".format(self.name, self.dependencies)
 
+class Sub(Ins):
+
+    def __init__(self, name, children, value):
+      super(Sub, self).__init__(name, children, value)
+
+    def __repr__(self):
+      return "add {}".format(self.dependencies)
+
 
 class Add(Ins):
 
@@ -126,7 +134,11 @@ assignm.colour = colours[registers.index("rdi")]
 
 ins = Ins("Root", [
     add,
-    Assign("b", [Literal(8)], None), assignm,
+  Assign("b", [Literal(10)], None),
+    Assign("g", [Literal(9), Literal(8)], None), assignm,
+    Assign("k", [
+      Sub("sub", [Reference("k"), Literal(1)], None)
+    ], None),
     Print("print", [Reference("m")], None)
 ], None)
 
@@ -169,6 +181,9 @@ class Graph():
   def backup(self):
     self.adjacency_backup = dict(self.adjacency)
 
+  def ancestors(self, node):
+    return self.backwards[node]
+  
   def remove_node(self, size):
     removals = []
     for node, links in self.adjacency.items():
@@ -198,7 +213,8 @@ class Graph():
       self.backwards[end] = []
       self.nodes.append(end)
     self.adjacency[start].append(end)
-    self.adjacency[end].append(start)
+    # self.adjacency[end].append(start)
+    self.backwards[end].append(start)
 
   def draw(self):
     dot = Popen(["dot", "-Tsvg", "-o", "graphs/{}.svg".format(self.name)],
@@ -320,34 +336,54 @@ def live_range(ins):
   index = 0
   previous_register = ""
   stack = backupstack
+  
+
+  print("")
+  pprint(stack)
+  print("")
+  
   while len(stack) > 0:
     #print(currentbatch)
     if len(available) == 0:
       available = list(registers)
-      print("resetting")
+      
+      print("resetting at ", stack[0])
       if previous_register in available:
+        print("removed {} from available".format(previous_register))
         available.remove(previous_register)
       # print("ran out of registers in assignment")
     item = stack.pop(0)
+    print("")
+    print("@ {}".format(item))
+    print("")
     index = index + 1
     if item.register:
       
+
       print("reserving register {}".format(item.register))
-      # print("basket is {}".format(int(index / len(registers))))
-      removalbatch = math.floor(index / len(registers))
       
-      print("{} removal batch for {} is {} {}".format(item, item.register, removalbatch, available))
       if item.register in available:
+        print("removed {} from consideration".format(item.register))
         available.remove(item.register)
+      
     elif item.register == None:
       
       
       print("{} available registers {}".format(item, available))
-      register = available.pop(0)
+      
+      myavailable = list(available)
+      for last_item in interactions.ancestors(item):
+        if last_item.register in myavailable:
+          print("removed previously used {}".format(last_item.register))
+          myavailable.remove(last_item.register)
+      register = myavailable.pop(0)
+
+      
+      available.remove(register)
       assigned.append((register, item))
       item.register = register
       item.colour = colours[registers.index(register)]
-    previous_register = item.register
+     
 
   interactions.restore()
   interactions.draw()
