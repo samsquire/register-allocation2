@@ -136,7 +136,8 @@ ins = Ins("Root", [
     add,
   Assign("b", [Literal(10)], None),
     Assign("g", [Literal(9), Literal(8)], None), assignm,
-    Assign("k", [
+  Assign("k", [Literal(3)], None),
+    Assign("m", [
       Sub("sub", [Reference("k"), Literal(1)], None)
     ], None),
     Print("print", [Reference("m")], None)
